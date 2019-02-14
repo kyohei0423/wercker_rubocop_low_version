@@ -31,5 +31,8 @@ build:
         - bundle-install
         - rails-database-yml
         - script:
+          name: check by rubocop
+          code: rubocop
+        - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
