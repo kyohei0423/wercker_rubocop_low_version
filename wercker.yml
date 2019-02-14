@@ -30,3 +30,6 @@ build:
     steps:
         - bundle-install
         - rails-database-yml
+        - script
+          name: create db
+          code: bundle exec rake db:create
