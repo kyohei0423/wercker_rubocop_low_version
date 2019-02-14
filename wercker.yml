@@ -32,4 +32,4 @@ build:
         - rails-database-yml
         - script:
           name: create db
-          code: bundle exec rake db:create
+          code: RAILS_ENV=test bundle exec rake db:create
