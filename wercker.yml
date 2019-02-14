@@ -22,4 +22,3 @@ build:
     # https://devcenter.wercker.com/development/steps/
     steps:
         - bundle-install
-        - script:
