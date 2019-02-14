@@ -37,7 +37,7 @@ build:
             curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
         - script:
           name: run rubocop and comment pr
-          code: bundle exec rubocop | ./reviewdog -f=rubocop -reporter=github-pr-review
+          code: bundle exec rubocop | reviewdog -f=rubocop -reporter=github-pr-review
         - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
