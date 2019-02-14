@@ -32,7 +32,7 @@ build:
         - rails-database-yml
         - script:
           name: setup reviewdog
-          code: - curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
+          code: curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
         - script:
           name: check by rubocop
           code: rubocop
