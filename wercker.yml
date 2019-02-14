@@ -31,6 +31,9 @@ build:
         - bundle-install
         - rails-database-yml
         - script:
+          name: setup reviewdow
+          code: curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o reviewdog && chmod +x ./reviewdog
+        - script:
           name: check by rubocop
           code: rubocop
         - script:
