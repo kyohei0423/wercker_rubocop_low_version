@@ -37,7 +37,7 @@ build:
             export CI_BRANCH=$WERCKER_GIT_BRANCH
             export CI_REPO_OWNER=$WERCKER_GIT_OWNER
             export CI_REPO_NAME=$WERCKER_GIT_REPOSITORY
-            export CI_COMMIT=WERCKER_GIT_COMMIT
+            export CI_COMMIT=$WERCKER_GIT_COMMIT
         - script:
           name: echo environment variable
           code: |
