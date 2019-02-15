@@ -31,18 +31,6 @@ build:
         - bundle-install
         - rails-database-yml
         - script:
-          name: set environment variable
-          code: |
-            export CI_COMMIT=$(git rev-parse HEAD)
-            export CI_BRANCH=$WERCKER_GIT_BRANCH
-        - script:
-          name: echo environment variable
-          code: |
-            echo "CI_COMMIT"
-            echo $CI_COMMIT
-            echo "CI_BRANCH"
-            echo $CI_BRANCH
-        - script:
           name: setup reviewdog
           code: |
             mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
