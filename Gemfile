@@ -40,10 +40,6 @@ gem 'spring',        group: :development
 #
 group :development, :test do
   gem 'rubocop', '~> 0.57.0', require: false
-  gem 'saddler'
-  gem 'saddler-reporter-github'
-  gem 'rubocop-checkstyle_formatter', require: false
-  gem 'checkstyle_filter-git'
 end
 
 group :test do

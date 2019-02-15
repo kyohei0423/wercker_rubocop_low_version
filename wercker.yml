@@ -33,14 +33,9 @@ build:
         - script:
           name: run rubocop and comment pr
           code: |
+            echo 'Start Rubocop'
             git diff --name-only $GIT_DEFAULT_BRANCH \
-            | xargs rubocop \
-              --require rubocop/formatter/checkstyle_formatter \
-              --format RuboCop::Formatter::CheckstyleFormatter \
-            | checkstyle_filter-git diff origin/master \
-            | saddler report \
-                --require saddler/reporter/github \
-                --reporter Saddler::Reporter::Github::PullRequestReviewComment
+            | xargs rubocop --force-exclusion
         - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
