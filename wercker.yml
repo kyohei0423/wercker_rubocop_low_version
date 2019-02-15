@@ -34,7 +34,9 @@ build:
           name: setup reviewdog
           code: |
             echo $WERCKER_GIT_COMMIT
-            export CI_COMMIT=$WERCKER_GIT_COMMIT
+            export CI_COMMIT=$(git rev-parse HEAD)
+            echo "CI_COMMIT"
+            echo $CI_COMMIT
             mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
             curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
         - script:
