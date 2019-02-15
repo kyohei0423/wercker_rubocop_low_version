@@ -33,6 +33,8 @@ build:
         - script:
           name: setup reviewdog
           code: |
+            export CI_COMMIT=$WERCKER_BUILD_ID
+            env
             mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
             curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
         - script:
