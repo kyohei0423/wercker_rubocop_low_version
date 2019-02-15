@@ -32,7 +32,9 @@ build:
         - rails-database-yml
         - script:
           name: run rubocop and comment pr
-          code: bundle exec rubocop
+          code: |
+            git diff --name-only $GIT_DEFAULT_BRANCH \
+            | bundle exec rubocop --force-exclusion
         - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
