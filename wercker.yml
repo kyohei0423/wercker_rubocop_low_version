@@ -43,14 +43,13 @@ build:
             num=$(curl -H "Authorization: token $GITHUB_ACCESS_TOKEN" -X GET https://api.github.com/repos/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY/pulls?head=$WERCKER_STARTED_BYgi$WERCKER_GIT_BRANCH \
             | jq '.[0].number')
             export CI_PULL_REQUEST=$num
-            echo CI_PULL_REQUEST
-            echo $CI_PULL_REQUEST
         - script:
           name: run rubocop and comment pr
           code: |
             echo 'Start Rubocop'
             git diff --name-only $GIT_DEFAULT_BRANCH \
-            | xargs rubocop --force-exclusion
+            | xargs rubocop --force-exclusion \
+            | ./reviewdog -f=rubocop -reporter=github-pr-review
         - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
