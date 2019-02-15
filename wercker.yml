@@ -46,9 +46,9 @@ build:
         - script:
           name: set environment variables
           code: |
-            export CI_COMMIT=WERCKER_GIT_COMMIT
-            export CI_REPO_OWNER=WERCKER_GIT_OWNER
-            export CI_REPO_NAME=WERCKER_GIT_REPOSITORY
+            export CI_COMMIT=$WERCKER_GIT_COMMIT
+            export CI_REPO_OWNER=$WERCKER_GIT_OWNER
+            export CI_REPO_NAME=$WERCKER_GIT_REPOSITORY
         - script:
           name: run rubocop and comment pr
           code: |
