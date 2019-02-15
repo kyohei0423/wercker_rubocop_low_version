@@ -27,14 +27,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    addressable (2.5.2)
-      public_suffix (>= 2.0.2, < 4.0)
     arel (5.0.1.20140414130214)
     ast (2.4.0)
     builder (3.2.3)
-    checkstyle_filter-git (1.1.0)
-      git_diff_parser
-      thor
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -43,17 +38,8 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.4)
-    env_branch (1.3.0)
-    env_pull_request (1.1.0)
-      natural_number_string
     erubis (2.7.0)
     execjs (2.7.0)
-    faraday (0.15.4)
-      multipart-post (>= 1.2, < 3)
-    git (1.5.0)
-    git_clone_url (2.0.0)
-      uri-ssh_git (>= 2.0)
-    git_diff_parser (2.3.0)
     hike (1.2.3)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
@@ -71,17 +57,11 @@ GEM
     mini_mime (1.0.1)
     minitest (5.11.3)
     multi_json (1.13.1)
-    multipart-post (2.0.0)
     mysql2 (0.3.19)
-    natural_number_string (1.0.1)
-    nori (2.6.0)
-    octokit (4.13.0)
-      sawyer (~> 0.8.0, >= 0.5.3)
     parallel (1.13.0)
     parser (2.6.0.0)
       ast (~> 2.4.0)
     powerpack (0.1.2)
-    public_suffix (3.0.3)
     rack (1.5.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -112,34 +92,13 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
-    rubocop-checkstyle_formatter (0.4.0)
-      rubocop (>= 0.35.1)
     ruby-progressbar (1.10.0)
-    saddler (1.0.0)
-      saddler-reporter-text
-      thor
-    saddler-reporter-github (2.0.0)
-      env_pull_request (>= 1.0)
-      git_diff_parser (>= 2.0, < 3.0)
-      octokit
-      saddler-reporter-support (>= 1.0)
-      saddler-reporter-support-git (>= 1.0)
-    saddler-reporter-support (1.0.0)
-      nori
-    saddler-reporter-support-git (2.0.1)
-      env_branch (>= 1.0)
-      git (>= 1.0, < 2.0)
-      git_clone_url (>= 2.0, < 3.0)
-    saddler-reporter-text (1.0.0)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
-    sawyer (0.8.1)
-      addressable (>= 2.3.5, < 2.6)
-      faraday (~> 0.8, < 1.0)
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -167,22 +126,17 @@ GEM
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.4.1)
-    uri-ssh_git (2.0.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  checkstyle_filter-git
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
   mysql2
   rails (= 4.1.9)
   rubocop (~> 0.57.0)
-  rubocop-checkstyle_formatter
-  saddler
-  saddler-reporter-github
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
