@@ -31,12 +31,17 @@ build:
         - bundle-install
         - rails-database-yml
         - script:
-          name: setup reviewdog
+          name: set environment variable
           code: |
-            echo $WERCKER_GIT_COMMIT
             export CI_COMMIT=$(git rev-parse HEAD)
+        - script:
+          name: echo environment variable
+          code: |
             echo "CI_COMMIT"
             echo $CI_COMMIT
+        - script:
+          name: setup reviewdog
+          code: |
             mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
             curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
         - script:
