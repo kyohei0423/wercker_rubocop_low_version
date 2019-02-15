@@ -34,7 +34,10 @@ build:
           name: run rubocop and comment pr
           code: |
             git diff --name-only $GIT_DEFAULT_BRANCH \
-            | bundle exec rubocop --force-exclusion
+            | bundle exec rubocop --force-exclusion \
+            | saddler report \
+              --require saddler/reporter/github \
+              --reporter Saddler::Reporter::Github::PullRequestReviewComment
         - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
