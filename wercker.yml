@@ -34,7 +34,7 @@ build:
           name: set environment variable
           code: |
             export CI_COMMIT=$(git rev-parse HEAD)
-            expert CI_BRANCH=$WERCKER_GIT_BRANCH
+            export CI_BRANCH=$WERCKER_GIT_BRANCH
         - script:
           name: echo environment variable
           code: |
