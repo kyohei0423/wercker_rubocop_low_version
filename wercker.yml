@@ -35,12 +35,13 @@ build:
           code: |
             mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
             curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
-            curl -fSL http://stedolan.github.io/jq/download/linux64/jq -o ~/bin/jq && chmod +x ~/bin/jq
+            curl -L http://stedolan.github.io/jq/download/linux64/jq -o /usr/local/bin/jq
+            chmod +x /usr/local/bin/jq
         - script:
           name: pr numberを環境変数に代入
           code: |
             curl -H "Authorization: token $GITHUB_ACCESS_TOKEN" -X GET https://api.github.com/repos/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY/pulls?head=$WERCKER_STARTED_BYgi$WERCKER_GIT_BRANCH \
-            | ./jq '.[0].number'
+            | jq '.[0].number'
             echo CI_PULL_REQUEST
             echo $CI_PULL_REQUEST
         - script:
