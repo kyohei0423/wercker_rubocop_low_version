@@ -43,6 +43,7 @@ group :development, :test do
   gem 'saddler'
   gem 'saddler-reporter-github'
   gem 'rubocop-checkstyle_formatter', require: false
+  gem 'checkstyle_filter-git'
 end
 
 group :test do
