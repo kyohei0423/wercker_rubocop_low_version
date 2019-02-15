@@ -33,9 +33,10 @@ build:
         - script:
           name: install jq
           code: |
-            curl -L http://stedolan.github.io/jq/download/linux64/jq -o /usr/local/bin/jq
-            chmod +x /usr/local/bin/jq
-            export PATH="/usr/local/bin/:$PATH"
+            mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
+            export PATH="~/bin/:$PATH"
+            curl -L http://stedolan.github.io/jq/download/linux64/jq -o ~/bin/jq
+            chmod +x ~/bin/jq
         - script:
           name: pr numberを環境変数に代入
           code: |
