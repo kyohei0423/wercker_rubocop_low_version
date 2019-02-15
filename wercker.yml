@@ -39,7 +39,7 @@ build:
         - script:
           name: pr numberを環境変数に代入
           code: |
-            export CI_PULL_REQUEST=(curl -X https://api.github.com/repose/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY/pulls?status=open\&base=$WERCKER_GIT_BRANCH\&sort=updated | jq '.[0].number')
+            export CI_PULL_REQUEST=(curl -X https://api.github.com/repose/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY/pulls?status=open\&base=$WERCKER_GIT_BRANCH\&sort=updated | ./jq '.[0].number')
             echo CI_PULL_REQUEST
             echo $CI_PULL_REQUEST
         - script:
