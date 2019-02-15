@@ -34,7 +34,7 @@ build:
           name: install jq
           code: |
             curl -L http://stedolan.github.io/jq/download/linux64/jq -o /usr/local/bin/jq
-          chmod +x /usr/local/bin/jq
+            chmod +x /usr/local/bin/jq
         - script:
           name: run rubocop and comment pr
           code: |
