@@ -40,6 +40,7 @@ gem 'spring',        group: :development
 #
 group :development, :test do
   gem 'rubocop', '~> 0.57.0', require: false
+  gem 'saddler'
 end
 
 group :test do
