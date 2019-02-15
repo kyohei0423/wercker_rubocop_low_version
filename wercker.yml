@@ -31,34 +31,8 @@ build:
         - bundle-install
         - rails-database-yml
         - script:
-          name: set environment variable
-          code: |
-            export CI_COMMIT=$(git rev-parse HEAD)
-            export CI_BRANCH=$WERCKER_GIT_BRANCH
-            export CI_REPO_OWNER=$WERCKER_GIT_OWNER
-            export CI_REPO_NAME=$WERCKER_GIT_REPOSITORY
-            export CI_COMMIT=$WERCKER_GIT_COMMIT
-        - script:
-          name: echo environment variable
-          code: |
-            echo "CI_COMMIT"
-            echo $CI_COMMIT
-            echo "CI_BRANCH"
-            echo $CI_BRANCH
-            echo "CI_REPO_OWNER"
-            echo $CI_REPO_OWNER
-            echo "CI_REPO_NAME"
-            echo $CI_REPO_NAME
-            echo "CI_COMMIT"
-            echo $CI_COMMIT
-        - script:
-          name: setup reviewdog
-          code: |
-            mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
-            curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
-        - script:
           name: run rubocop and comment pr
-          code: bundle exec rubocop | reviewdog -f=rubocop -reporter=github-pr-review
+          code: bundle exec rubocop
         - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
