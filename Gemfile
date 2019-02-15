@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rubocop', '~> 0.57.0', require: false
   gem 'saddler'
   gem 'saddler-reporter-github'
+  gem 'rubocop-checkstyle_formatter', require: false
 end
 
 group :test do
