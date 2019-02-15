@@ -49,7 +49,7 @@ build:
             echo 'Start Rubocop'
             git diff --name-only $GIT_DEFAULT_BRANCH \
             | xargs rubocop --force-exclusion \
-            | ./reviewdog -f=rubocop -reporter=github-pr-review
+            | reviewdog -f=rubocop -reporter=github-pr-review
         - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
