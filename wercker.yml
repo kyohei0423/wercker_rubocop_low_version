@@ -31,12 +31,16 @@ build:
         - bundle-install
         - rails-database-yml
         - script:
-          name: install jq and revewdog
+          name: install jq
           code: |
-            mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
-            curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
             curl -L http://stedolan.github.io/jq/download/linux64/jq -o /usr/local/bin/jq
             chmod +x /usr/local/bin/jq
+        - script:
+          name: install reviewdog
+          code: |
+            mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
+            curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog
+            chmod +x ~/bin/reviewdog
         - script:
           name: pr numberを環境変数に代入
           code: |
@@ -49,6 +53,14 @@ build:
             export CI_COMMIT=$WERCKER_GIT_COMMIT
             export CI_REPO_OWNER=$WERCKER_GIT_OWNER
             export CI_REPO_NAME=$WERCKER_GIT_REPOSITORY
+            echo CI_COMMIT
+            echo $CI_COMMIT
+            echo CI_REPO_OWNER
+            echo $CI_REPO_OWNER
+            echo CI_REPO_NAME
+            echo $CI_REPO_NAME
+            echo CI_PULL_REQUEST
+            echo $CI_PULL_REQUEST
         - script:
           name: run rubocop and comment pr
           code: |
