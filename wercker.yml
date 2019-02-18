@@ -61,6 +61,8 @@ build:
             echo $CI_REPO_NAME
             echo CI_PULL_REQUEST
             echo $CI_PULL_REQUEST
+            echo WERCKER_GIT_BRANCH
+            echo $WERCKER_GIT_BRANCH
         - script:
           name: run rubocop and comment pr
           code: |
