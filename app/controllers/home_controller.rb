@@ -16,4 +16,20 @@ class HomeController < ApplicationController
     puts 'hoge'
     puts 'hoge'
   end
+
+  def create
+    puts 'hoge'
+    puts 'hoge'
+    puts 'hoge'
+    puts 'hoge'
+    puts 'hoge'
+    puts 'hoge'
+    puts 'hoge'
+    puts 'hoge'
+    puts 'hoge'
+    puts 'hoge'
+    puts 'hoge'
+    puts 'hoge'
+    puts 'hoge'
+  end
 end
