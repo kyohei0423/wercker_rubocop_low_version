@@ -44,7 +44,7 @@ build:
         - script:
           name: pr numberを環境変数に代入
           code: |
-            username=$(git config --local user.name)
+            username=$(git log --pretty=format:"%an" -1)
             echo $username
             num=$(curl -H "Authorization: token $REVIEWDOG_GITHUB_API_TOKEN" -X GET https://api.github.com/repos/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY/pulls?head=$username:$WERCKER_GIT_BRANCH \
             | jq '.[0].number')
