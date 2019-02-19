@@ -70,6 +70,7 @@ build:
             if [ $result ]; then exit 1; fi 
             echo 'Finish Rubocop'
             echo $result
+            exit 1
         - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
