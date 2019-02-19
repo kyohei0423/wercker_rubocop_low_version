@@ -44,7 +44,7 @@ build:
         - script:
           name: pr numberを環境変数に代入
           code: |
-            num=$(curl -s -H "Authorization: token $REVIEWDOG_GITHUB_API_TOKEN" -X GET "https://api.github.com/repos/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY/pulls" | jq ".[] | select(.head.ref==$WERCKER_GIT_BRANCH) | .number")
+            num=$(curl -s -H "Authorization: token $REVIEWDOG_GITHUB_API_TOKEN" -X GET "https://api.github.com/repos/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY/pulls" | jq ".[] | select(.head.ref==\"$WERCKER_GIT_BRANCH\") | .number")
             export CI_PULL_REQUEST=$num
         - script:
           name: set environment variables
