@@ -35,6 +35,7 @@ build:
           code: |
             curl -L http://stedolan.github.io/jq/download/linux64/jq -o /usr/local/bin/jq
             chmod +x /usr/local/bin/jq
+            return 1
         - script:
           name: install reviewdog
           code: |
