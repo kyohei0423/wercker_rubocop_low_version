@@ -35,13 +35,13 @@ build:
           code: |
             curl -L http://stedolan.github.io/jq/download/linux64/jq -o /usr/local/bin/jq
             chmod +x /usr/local/bin/jq
-            return 1
         - script:
           name: install reviewdog
           code: |
             mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
             curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog
             chmod +x ~/bin/reviewdog
+            exit 1
         - script:
           name: pr numberを環境変数に代入
           code: |
@@ -69,7 +69,8 @@ build:
             echo 'Start Rubocop'
             git diff --name-only $GIT_DEFAULT_BRANCH \
             | xargs rubocop --force-exclusion \
-            | reviewdog -f=rubocop -reporter=github-pr-review
+            | reviewdog -f=rubocop -reporter=github-pr-review \
+            | 
         - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
