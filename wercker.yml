@@ -67,7 +67,7 @@ build:
           code: |
             echo 'Start Rubocop'
             result=$(git diff --name-only $GIT_DEFAULT_BRANCH | xargs rubocop --force-exclusion | reviewdog -f=rubocop -reporter=github-pr-review)
-            if [-z "$result" ]; then
+            if [ -z "$result" ]; then
               echo "if context"
               echo $result
               exit 1;
