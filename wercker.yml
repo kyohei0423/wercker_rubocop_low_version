@@ -66,7 +66,7 @@ build:
           name: run rubocop and comment pr
           code: |
             echo 'Start Rubocop'
-            echo (git diff --name-only $GIT_DEFAULT_BRANCH | xargs rubocop --force-exclusion | reviewdog -f=rubocop -reporter=github-pr-review)
+            echo "$(git diff --name-only $GIT_DEFAULT_BRANCH | xargs rubocop --force-exclusion | reviewdog -f=rubocop -reporter=github-pr-review)"
             git diff --name-only $GIT_DEFAULT_BRANCH \
             | xargs rubocop --force-exclusion \
             | reviewdog -f=rubocop -reporter=github-pr-review
