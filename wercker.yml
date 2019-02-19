@@ -66,9 +66,11 @@ build:
           name: run rubocop and comment pr
           code: |
             echo 'Start Rubocop'
-            git diff --name-only $GIT_DEFAULT_BRANCH \
-            | xargs rubocop --force-exclusion \
-            | reviewdog -f=rubocop -reporter=github-pr-review
+            result=$(git diff --name-only $GIT_DEFAULT_BRANCH | xargs rubocop --force-exclusion | reviewdog -f=rubocop -reporter=github-pr-review)
+            if [ ! -z "$result" ]; then
+              exit 1;
+            fi 
+            echo 'Finish Rubocop'
         - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
