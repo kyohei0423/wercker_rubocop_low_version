@@ -67,10 +67,12 @@ build:
           code: |
             echo 'Start Rubocop'
             result=$(git diff --name-only $GIT_DEFAULT_BRANCH | xargs rubocop --force-exclusion | reviewdog -f=rubocop -reporter=github-pr-review)
-            if [ $result ]; then exit 1; fi 
+            if [ $result ]; then
+              echo "if context"
+              echo $result
+              exit 1;
+            fi 
             echo 'Finish Rubocop'
-            echo $result
-            exit 1
         - script:
           name: create db
           code: RAILS_ENV=test bundle exec rake db:create
