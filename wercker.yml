@@ -1,0 +1,74 @@
+# This references the default Ruby container from
+# the Docker Hub.
+# https://registry.hub.docker.com/_/ruby/
+# If you want to use a specific version you would use a tag:
+# ruby:2.2.2
+box: ruby:2.1.7
+# You can also use services such as databases. Read more on our dev center:
+# https://devcenter.wercker.com/administration/services/
+services:
+  - id: mysql:5.6
+    cmd: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    env:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: test
+    # - postgres
+    # https://devcenter.wercker.com/administration/services/examples/postgresql/
+
+    # - mongo
+    # https://devcenter.wercker.com/administration/services/examples/mongodb/
+
+# This is the build pipeline. Pipelines are the core of wercker
+# Read more about pipelines on our dev center
+# https://devcenter.wercker.com/development/pipelines/
+build:
+    # Steps make up the actions in your pipeline
+    # Read more about steps on our dev center:
+    # https://devcenter.wercker.com/development/steps/
+    steps:
+        - bundle-install
+        - rails-database-yml
+        - script:
+          name: install jq
+          code: |
+            curl -L http://stedolan.github.io/jq/download/linux64/jq -o /usr/local/bin/jq
+            chmod +x /usr/local/bin/jq
+        - script:
+          name: install reviewdog
+          code: |
+            mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
+            curl -fSL https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -o ~/bin/reviewdog
+            chmod +x ~/bin/reviewdog
+        - script:
+          name: pr numberを環境変数に代入
+          code: |
+            num=$(curl -s -H "Authorization: token $REVIEWDOG_GITHUB_API_TOKEN" -X GET "https://api.github.com/repos/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY/pulls" | jq ".[] | select(.head.ref==\"$WERCKER_GIT_BRANCH\") | .number")
+            export CI_PULL_REQUEST=$num
+        - script:
+          name: set environment variables
+          code: |
+            export CI_COMMIT=$WERCKER_GIT_COMMIT
+            export CI_REPO_OWNER=$WERCKER_GIT_OWNER
+            export CI_REPO_NAME=$WERCKER_GIT_REPOSITORY
+            echo CI_COMMIT
+            echo $CI_COMMIT
+            echo CI_REPO_OWNER
+            echo $CI_REPO_OWNER
+            echo CI_REPO_NAME
+            echo $CI_REPO_NAME
+            echo CI_PULL_REQUEST
+            echo $CI_PULL_REQUEST
+            echo WERCKER_GIT_BRANCH
+            echo $WERCKER_GIT_BRANCH
+        - script:
+          name: run rubocop and comment pr
+          code: |
+            echo 'Start Rubocop'
+            git diff --name-only $GIT_DEFAULT_BRANCH \
+            | xargs rubocop --force-exclusion \
+            | reviewdog -f=rubocop -reporter=github-pr-review
+        - script:
+          name: create db
+          code: RAILS_ENV=test bundle exec rake db:create

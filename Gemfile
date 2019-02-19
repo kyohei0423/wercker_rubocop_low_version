@@ -37,4 +37,11 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+#
+group :development, :test do
+  gem 'rubocop', '~> 0.57.0', require: false
+end
 
+group :test do
+  gem 'therubyracer' # for wercker
+end
